@@ -35,11 +35,13 @@ def main():
 	Player.containers = (updateable, drawable)
 	Asteroid.containers = (asteroids, updateable, drawable)
 	AsteroidField.containers = (updateable)
-	Shot.containers = (updateable, drawable)
-	
+	Shot.containers = (shot, updateable, drawable)
+
 	my_player = Player(x, y) 
 	my_asteroid_field = AsteroidField()
 
+
+	# GAME LOOP STARTS HERE ***********************************
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -59,6 +61,12 @@ def main():
 				print("Game over!")
 				raise SystemExit
 
+		for aster in asteroids:
+			for bullets in shot:
+				if bullets.check_collisions(aster):
+					aster.split()
+					bullets.kill()
+		
 
 		pygame.display.flip()
 
