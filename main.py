@@ -1,9 +1,18 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
-import pygame, constants, circleshape, player
+import pygame
+import constants
+import circleshape
+import player
+import asteroid
+import asteroidfield
 from constants import *
 from player import *
+from asteroid import *
+from asteroidfield import *
+
+
 
 def main():
 	print("Starting asteroids!")
@@ -17,11 +26,16 @@ def main():
 	x = (SCREEN_WIDTH / 2)
 	y = (SCREEN_HEIGHT / 2) 
 
+	asteroids = pygame.sprite.Group()
 	updateable = pygame.sprite.Group() 
 	drawable = pygame.sprite.Group() 
-	Player.containers = (updateable, drawable)
-	my_player = Player(x, y) 
 
+	Player.containers = (updateable, drawable)
+	Asteroid.containers = (asteroids, updateable, drawable)
+	AsteroidField.containers = (updateable)
+
+	my_player = Player(x, y) 
+	my_asteroid_field = AsteroidField()
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
