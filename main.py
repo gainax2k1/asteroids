@@ -8,10 +8,10 @@ import player
 import asteroid
 import asteroidfield
 from constants import *
+from circleshape import *
 from player import *
 from asteroid import *
 from asteroidfield import *
-
 
 
 def main():
@@ -36,11 +36,12 @@ def main():
 
 	my_player = Player(x, y) 
 	my_asteroid_field = AsteroidField()
+
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				return
-
+	
 		screen.fill((0,0,0), rect=None, special_flags=0)
 		for thing_to_draw in drawable:
 			thing_to_draw.draw(screen)

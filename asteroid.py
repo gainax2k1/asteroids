@@ -3,16 +3,15 @@ from constants import *
 from circleshape import *
 
 class Asteroid(CircleShape):
-    def __init__(self, x, y, radius):
-
-        def draw(self, screen):
-            pygame.draw.circle(self.position, self.radius, 2)
-
-        
+    def __init__(self, x, y, radius):    # don't touch this line
+        super().__init__(x, y, radius)  # something I thought might work
 
 
-        def update(self, dt):
-            self.position += (self.velocity * dt)
+    def draw(self, screen):
+        pygame.draw.circle(screen, (155,255,255), self.position, self.radius, width=2)
+
+    def update(self, dt):
+        self.position += (self.velocity * dt)
 
 
 
